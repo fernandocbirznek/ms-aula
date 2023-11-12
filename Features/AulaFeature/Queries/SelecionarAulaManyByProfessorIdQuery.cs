@@ -5,12 +5,12 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.AulaFeature.Queries
 {
-    public class SelecionarAulaManyByAreaFisicaIdQuery : IRequest<IEnumerable<SelecionarAulaManyByAreaFisicaIdQueryResponse>>
+    public class SelecionarAulaManyByProfessorIdQuery : IRequest<IEnumerable<SelecionarAulaManyByProfessorIdQueryResponse>>
     {
         public long Id { get; set; }
     }
 
-    public class SelecionarAulaManyByAreaFisicaIdQueryResponse : Entity
+    public class SelecionarAulaManyByProfessorIdQueryResponse : Entity
     {
         public string Titulo { get; set; }
         public string Resumo { get; set; }
@@ -21,11 +21,11 @@ namespace ms_aula.Features.AulaFeature.Queries
         public ICollection<AulaSessao>? AulaSessaoMany { get; set; }
     }
 
-    public class SelecionarAulaManyByAreaFisicaIdQueryHandler : IRequestHandler<SelecionarAulaManyByAreaFisicaIdQuery, IEnumerable<SelecionarAulaManyByAreaFisicaIdQueryResponse>>
+    public class SelecionarAulaManyByProfessorIdQueryHandler : IRequestHandler<SelecionarAulaManyByProfessorIdQuery, IEnumerable<SelecionarAulaManyByProfessorIdQueryResponse>>
     {
         private readonly IRepository<Aula> _repository;
 
-        public SelecionarAulaManyByAreaFisicaIdQueryHandler
+        public SelecionarAulaManyByProfessorIdQueryHandler
         (
             IRepository<Aula> repository
         )
@@ -33,28 +33,28 @@ namespace ms_aula.Features.AulaFeature.Queries
             _repository = repository;
         }
 
-        public async Task<IEnumerable<SelecionarAulaManyByAreaFisicaIdQueryResponse>> Handle
+        public async Task<IEnumerable<SelecionarAulaManyByProfessorIdQueryResponse>> Handle
         (
-            SelecionarAulaManyByAreaFisicaIdQuery request,
+            SelecionarAulaManyByProfessorIdQuery request,
             CancellationToken cancellationToken
         )
         {
             if (request is null)
-                throw new ArgumentNullException(MessageHelper.NullFor<SelecionarAulaManyByAreaFisicaIdQuery>());
+                throw new ArgumentNullException(MessageHelper.NullFor<SelecionarAulaManyByProfessorIdQuery>());
 
             IEnumerable<Aula> aulaMany = await GetAsync(request, cancellationToken);
 
-            List<SelecionarAulaManyByAreaFisicaIdQueryResponse> responseMany = new List<SelecionarAulaManyByAreaFisicaIdQueryResponse>();
+            List<SelecionarAulaManyByProfessorIdQueryResponse> responseMany = new List<SelecionarAulaManyByProfessorIdQueryResponse>();
 
             foreach (Aula aula in aulaMany)
             {
-                SelecionarAulaManyByAreaFisicaIdQueryResponse response = new SelecionarAulaManyByAreaFisicaIdQueryResponse();
+                SelecionarAulaManyByProfessorIdQueryResponse response = new SelecionarAulaManyByProfessorIdQueryResponse();
                 response.Titulo = aula.Titulo;
                 response.Resumo = aula.Resumo;
                 response.Favoritado = aula.Favoritado;
                 response.Curtido = aula.Curtido;
                 response.ProfessorId = aula.ProfessorId;
-   
+
                 response.AulaSessaoMany = getAulaSessaMany(aula.AulaSessaoMany);
                 response.AulaComentarioMany = getAulaComentarioMany(aula.AulaComentarioMany);
 
@@ -69,20 +69,20 @@ namespace ms_aula.Features.AulaFeature.Queries
 
         private async Task<IEnumerable<Aula>> GetAsync
         (
-            SelecionarAulaManyByAreaFisicaIdQuery request,
+            SelecionarAulaManyByProfessorIdQuery request,
             CancellationToken cancellationToken
         )
         {
             return await _repository.GetAsync
                 (
-                    item => item.AreaFisicaId.Equals(request.Id),
+                    item => item.ProfessorId.Equals(request.Id),
                     cancellationToken,
                     item => item.AulaComentarioMany,
                     item => item.AulaSessaoMany
                 );
         }
 
-        private List<AulaSessao> getAulaSessaMany 
+        private List<AulaSessao> getAulaSessaMany
         (
             ICollection<AulaSessao> entity
         )

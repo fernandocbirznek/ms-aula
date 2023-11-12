@@ -9,6 +9,7 @@ namespace ms_aula.Features.AulaFeature.Commands
     public class InserirAulaCommand : IRequest<InserirAulaCommandResponse>
     {
         public string Titulo { get; set; }
+        public string Resumo { get; set; }
         public long ProfessorId { get; set; }
         public long AreaFisicaId { get; set; }
     }

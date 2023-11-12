@@ -9,6 +9,7 @@ namespace ms_aula.Features.AulaFeature.Commands
     {
         public long Id { get; set; }
         public string Titulo { get; set; }
+        public string Resumo { get; set; }
         public long AreaFisicaId { get; set; }
     }
 
@@ -42,6 +43,7 @@ namespace ms_aula.Features.AulaFeature.Commands
 
             Aula aula = await GetFirstAsync(request, cancellationToken);
             aula.Titulo = request.Titulo;
+            aula.Resumo = request.Resumo;
             aula.AreaFisicaId = request.AreaFisicaId;
 
             await _repositoryAula.UpdateAsync(aula);

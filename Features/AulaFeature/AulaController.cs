@@ -59,6 +59,12 @@ namespace ms_aula.Features.AulaFeature
             return await this.SendAsync(_mediator, new SelecionarAulaByIdQuery() { Id = aulaId });
         }
 
+        [HttpGet("selecionar-aulas-professor/{professorId}")]
+        public async Task<ActionResult> GetAulaProfessor(long professorId)
+        {
+            return await this.SendAsync(_mediator, new SelecionarAulaManyByProfessorIdQuery() { Id = professorId });
+        }
+
         [HttpGet("selecionar-aulas-area-fisica/{areaFisicaId}")]
         public async Task<ActionResult> Get(long areaFisicaId)
         {

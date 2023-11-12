@@ -10,6 +10,7 @@ namespace ms_aula.Extensions
             return new()
             {
                 Titulo = request.Titulo,
+                Resumo = request.Resumo,
                 Favoritado = 0,
                 Curtido = 0,
                 ProfessorId = request.ProfessorId,

@@ -13,6 +13,7 @@ namespace ms_aula.Features.AulaFeature.Queries
     public class SelecionarAulaByIdQueryResponse : Entity
     {
         public string Titulo { get; set; }
+        public string Resumo { get; set; }
         public long Favoritado { get; set; }
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
@@ -47,6 +48,7 @@ namespace ms_aula.Features.AulaFeature.Queries
 
             SelecionarAulaByIdQueryResponse response = new SelecionarAulaByIdQueryResponse();
             response.Titulo = aula.Titulo;
+            response.Resumo = aula.Resumo;
             response.Favoritado = aula.Favoritado;
             response.Curtido = aula.Curtido;
             response.ProfessorId = aula.ProfessorId;

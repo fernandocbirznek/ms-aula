@@ -3,6 +3,7 @@
     public class Aula : Entity
     {
         public string Titulo { get; set; }
+        public string Resumo { get; set; }
         public long Favoritado { get; set; }
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
