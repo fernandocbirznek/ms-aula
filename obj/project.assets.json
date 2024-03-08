@@ -1695,11 +1695,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\site-fisica\\ms-aula\\ms-aula\\ms-aula.csproj",
+      "projectUniqueName": "D:\\site\\ms-aula\\ms-aula.csproj",
       "projectName": "ms-aula",
-      "projectPath": "D:\\site-fisica\\ms-aula\\ms-aula\\ms-aula.csproj",
+      "projectPath": "D:\\site\\ms-aula\\ms-aula.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\site-fisica\\ms-aula\\ms-aula\\obj\\",
+      "outputPath": "D:\\site\\ms-aula\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

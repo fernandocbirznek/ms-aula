@@ -17,6 +17,7 @@ namespace ms_aula.Features.AulaFeature.Queries
         public long Favoritado { get; set; }
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
+        public long AreaFisicaId { get; set; }
         public ICollection<AulaComentario>? AulaComentarioMany { get; set; }
         public ICollection<AulaSessao>? AulaSessaoMany { get; set; }
     }
@@ -54,6 +55,7 @@ namespace ms_aula.Features.AulaFeature.Queries
                 response.Favoritado = aula.Favoritado;
                 response.Curtido = aula.Curtido;
                 response.ProfessorId = aula.ProfessorId;
+                response.AreaFisicaId = aula.AreaFisicaId;
 
                 response.AulaSessaoMany = getAulaSessaMany(aula.AulaSessaoMany);
                 response.AulaComentarioMany = getAulaComentarioMany(aula.AulaComentarioMany);

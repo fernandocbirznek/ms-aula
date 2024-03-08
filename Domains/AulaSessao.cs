@@ -3,6 +3,7 @@
     public class AulaSessao : Entity
     {
         public long Ordem { get; set; }
+        public string Titulo { get; set; }
         public string Conteudo { get; set; }
         public long Favoritado { get; set; }
         public AulaSessaoTipo AulaSessaoTipo { get; set; }

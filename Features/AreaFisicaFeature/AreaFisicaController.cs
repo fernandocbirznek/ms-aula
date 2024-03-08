@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ms_aula.Domains;
 using ms_aula.Extensions;
 using ms_aula.Features.AreaFisicaFeature.Commands;
 using ms_aula.Features.AreaFisicaFeature.Queries;
@@ -31,20 +32,20 @@ namespace ms_aula.Features.AreaFisicaFeature
             return await this.SendAsync(_mediator, request);
         }
 
-        [HttpDelete("excluir/{forumId}")]
+        [HttpDelete("excluir/{areaFisicaId}")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult> Delete(long forumId)
+        public async Task<ActionResult> Delete(long areaFisicaId)
         {
-            return await this.SendAsync(_mediator, new RemoverAreaFisicaCommand() { Id = forumId });
+            return await this.SendAsync(_mediator, new RemoverAreaFisicaCommand() { Id = areaFisicaId });
         }
 
-        [HttpGet("selecionar-forum/{forumId}")]
-        public async Task<ActionResult> GetForum(long forumId)
+        [HttpGet("selecionar-area-fisica/{areaFisicaId}")]
+        public async Task<ActionResult> GetForum(long areaFisicaId)
         {
-            return await this.SendAsync(_mediator, new SelecionarAreaFisicaByIdQuery() { Id = forumId });
+            return await this.SendAsync(_mediator, new SelecionarAreaFisicaByIdQuery() { Id = areaFisicaId });
         }
 
-        [HttpGet("selecionar-foruns")]
+        [HttpGet("selecionar-areas-fisica")]
         public async Task<ActionResult> Get()
         {
             return await this.SendAsync(_mediator, new SelecionarAreaFisicaFiltersQuery());

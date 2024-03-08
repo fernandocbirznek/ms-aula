@@ -9,6 +9,7 @@ namespace ms_aula.Features.AulaSessaoFeature.Commands
     public class InserirAulaSessaoCommand : IRequest<InserirAulaSessaoCommandResponse>
     {
         public long Ordem { get; set; }
+        public string Titulo { get; set; }
         public string Conteudo { get; set; }
         public AulaSessaoTipo AulaSessaoTipo { get; set; }
         public long AulaId { get; set; }

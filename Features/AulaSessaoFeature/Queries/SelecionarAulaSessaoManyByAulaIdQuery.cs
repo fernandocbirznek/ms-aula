@@ -13,6 +13,7 @@ namespace ms_aula.Features.AulaSessaoFeature.Queries
     public class SelecionarAulaSessaoManyByAulaIdQueryResponse : Entity
     {
         public long Ordem { get; set; }
+        public string Titulo { get; set; }
         public string Conteudo { get; set; }
         public long Favoritado { get; set; }
         public AulaSessaoTipo AulaSessaoTipo { get; set; }
@@ -47,6 +48,7 @@ namespace ms_aula.Features.AulaSessaoFeature.Queries
             {
                 SelecionarAulaSessaoManyByAulaIdQueryResponse response = new SelecionarAulaSessaoManyByAulaIdQueryResponse();
                 response.Ordem = aulaSessao.Ordem;
+                response.Titulo = aulaSessao.Titulo;
                 response.Conteudo = aulaSessao.Conteudo;
                 response.Favoritado = aulaSessao.Favoritado;
                 response.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;

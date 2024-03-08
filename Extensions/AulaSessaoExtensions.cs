@@ -11,6 +11,7 @@ namespace ms_aula.Extensions
             return new()
             {
                 Ordem = request.Ordem,
+                Titulo = request.Titulo,
                 Conteudo = request.Conteudo,
                 AulaSessaoTipo = request.AulaSessaoTipo,
                 AulaId = request.AulaId,

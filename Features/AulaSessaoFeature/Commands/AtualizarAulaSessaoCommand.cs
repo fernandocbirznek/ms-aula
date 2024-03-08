@@ -9,6 +9,7 @@ namespace ms_aula.Features.AulaSessaoFeature.Commands
     {
         public long Id { get; set; }
         public long Ordem { get; set; }
+        public string Titulo { get; set; }
         public string Conteudo { get; set; }
         public AulaSessaoTipo AulaSessaoTipo { get; set; }
     }
@@ -46,6 +47,7 @@ namespace ms_aula.Features.AulaSessaoFeature.Commands
 
             AulaSessao aulaSessao = await GetFirstAsync(request, cancellationToken);
             aulaSessao.Ordem = request.Ordem;
+            aulaSessao.Titulo = request.Titulo;
             aulaSessao.Conteudo = request.Conteudo;
             aulaSessao.AulaSessaoTipo = request.AulaSessaoTipo;
 
