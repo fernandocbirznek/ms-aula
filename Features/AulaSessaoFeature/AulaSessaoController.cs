@@ -31,6 +31,13 @@ namespace ms_aula.Features.AulaSessaoFeature
             return await this.SendAsync(_mediator, request);
         }
 
+        [HttpPut("atualizar-aula-sessao-ordem")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> Put(AtualizarAulaSessaoManyOrdemCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
+
         [HttpPut("atualizar-favoritada")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Put(AtualizarAulaSessaoFavoritadaCommand request)

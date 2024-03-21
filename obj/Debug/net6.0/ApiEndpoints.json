@@ -1,0 +1,636 @@
+[
+  {
+    "ContainingType": "ms_aula.Features.AreaFisicaFeature.AreaFisicaController",
+    "Method": "Put",
+    "RelativePath": "api/AreaFisica/atualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AreaFisicaFeature.Commands.AtualizarAreaFisicaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AreaFisicaFeature.AreaFisicaController",
+    "Method": "Delete",
+    "RelativePath": "api/AreaFisica/excluir/{areaFisicaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaFisicaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AreaFisicaFeature.AreaFisicaController",
+    "Method": "Post",
+    "RelativePath": "api/AreaFisica/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AreaFisicaFeature.Commands.InserirAreaFisicaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AreaFisicaFeature.AreaFisicaController",
+    "Method": "GetForum",
+    "RelativePath": "api/AreaFisica/selecionar-area-fisica/{areaFisicaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaFisicaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AreaFisicaFeature.AreaFisicaController",
+    "Method": "Get",
+    "RelativePath": "api/AreaFisica/selecionar-areas-fisica",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Put",
+    "RelativePath": "api/Aula/atualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaFeature.Commands.AtualizarAulaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Put",
+    "RelativePath": "api/Aula/atualizar-curtir",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaFeature.Commands.AtualizarAulaCurtirCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Put",
+    "RelativePath": "api/Aula/atualizar-favoritada",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaFeature.Commands.AtualizarAulaFavoritadaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Delete",
+    "RelativePath": "api/Aula/excluir/{aulaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Post",
+    "RelativePath": "api/Aula/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaFeature.Commands.InserirAulaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "GetAula",
+    "RelativePath": "api/Aula/selecionar-aula/{aulaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "Get",
+    "RelativePath": "api/Aula/selecionar-aulas-area-fisica/{areaFisicaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaFisicaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFeature.AulaController",
+    "Method": "GetAulaProfessor",
+    "RelativePath": "api/Aula/selecionar-aulas-professor/{professorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "professorId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaComentarioFeature.AulaComentarioController",
+    "Method": "Put",
+    "RelativePath": "api/AulaComentario/atualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaComentarioFeature.Commands.AtualizarAulaComentarioCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaComentarioFeature.AulaComentarioController",
+    "Method": "Delete",
+    "RelativePath": "api/AulaComentario/excluir/{aulaComentarioId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaComentarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaComentarioFeature.AulaComentarioController",
+    "Method": "Post",
+    "RelativePath": "api/AulaComentario/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaComentarioFeature.Commands.InserirAulaComentarioCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaComentarioFeature.AulaComentarioController",
+    "Method": "GetForum",
+    "RelativePath": "api/AulaComentario/selecionar-aula-comentario/{aulaComentarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaComentarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaComentarioFeature.AulaComentarioController",
+    "Method": "Get",
+    "RelativePath": "api/AulaComentario/selecionar-comentarios-aulas/{aulaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFavoritadaFeature.AulaFavoritadaController",
+    "Method": "Delete",
+    "RelativePath": "api/AulaFavoritada/excluir/{aulaFavoritadaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaFavoritadaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFavoritadaFeature.AulaFavoritadaController",
+    "Method": "Post",
+    "RelativePath": "api/AulaFavoritada/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaFavoritadaFeature.Commands.InserirAulaFavoritadaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaFavoritadaFeature.AulaFavoritadaController",
+    "Method": "Get",
+    "RelativePath": "api/AulaFavoritada/selecionar-aulas-favoritadas/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Put",
+    "RelativePath": "api/AulaSessao/atualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaSessaoFeature.Commands.AtualizarAulaSessaoCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Put",
+    "RelativePath": "api/AulaSessao/atualizar-aula-sessao-ordem",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaSessaoFeature.Commands.AtualizarAulaSessaoManyOrdemCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Put",
+    "RelativePath": "api/AulaSessao/atualizar-favoritada",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaSessaoFeature.Commands.AtualizarAulaSessaoFavoritadaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Delete",
+    "RelativePath": "api/AulaSessao/excluir/{aulaSessaoId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaSessaoId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Post",
+    "RelativePath": "api/AulaSessao/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaSessaoFeature.Commands.InserirAulaSessaoCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "GetForum",
+    "RelativePath": "api/AulaSessao/selecionar-aula-sessao/{aulaSessaoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaSessaoId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFeature.AulaSessaoController",
+    "Method": "Get",
+    "RelativePath": "api/AulaSessao/selecionar-sessoes-aula/{aulaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFavoritadaFeature.AulaSessaoFavoritadaController",
+    "Method": "Delete",
+    "RelativePath": "api/AulaSessaoFavoritada/excluir/{aulaSessaoFavoritadaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aulaSessaoFavoritadaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFavoritadaFeature.AulaSessaoFavoritadaController",
+    "Method": "Post",
+    "RelativePath": "api/AulaSessaoFavoritada/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.AulaSessaoFavoritadaFeature.Commands.InserirAulaSessaoFavoritadaCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.AulaSessaoFavoritadaFeature.AulaSessaoFavoritadaController",
+    "Method": "Get",
+    "RelativePath": "api/AulaSessaoFavoritada/selecionar-aulas-favoritadas/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetConcluidoFeature.WidgetConcluidoController",
+    "Method": "Delete",
+    "RelativePath": "api/WidgetConcluido/excluir/{widgetConcluidaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "widgetConcluidaId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetConcluidoFeature.WidgetConcluidoController",
+    "Method": "Post",
+    "RelativePath": "api/WidgetConcluido/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.WidgetConcluidoFeature.Commands.InserirWidgetConcluidoCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetConcluidoFeature.WidgetConcluidoController",
+    "Method": "Get",
+    "RelativePath": "api/WidgetConcluido/selecionar-aulas-favoritadas/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursandoFeature.WidgetCursandoController",
+    "Method": "Delete",
+    "RelativePath": "api/WidgetCursando/excluir/{widgetCursandoId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "widgetCursandoId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursandoFeature.WidgetCursandoController",
+    "Method": "Post",
+    "RelativePath": "api/WidgetCursando/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.WidgetCursandoFeature.Commands.InserirWidgetCursandoCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursandoFeature.WidgetCursandoController",
+    "Method": "Get",
+    "RelativePath": "api/WidgetCursando/selecionar-aulas-favoritadas/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursarFeature.WidgetCursarController",
+    "Method": "Delete",
+    "RelativePath": "api/WidgetCursar/excluir/{widgetCursarId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "widgetCursarId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursarFeature.WidgetCursarController",
+    "Method": "Post",
+    "RelativePath": "api/WidgetCursar/inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ms_aula.Features.WidgetCursarFeature.Commands.InserirWidgetCursarCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ms_aula.Features.WidgetCursarFeature.WidgetCursarController",
+    "Method": "Get",
+    "RelativePath": "api/WidgetCursar/selecionar-aulas-favoritadas/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\site-fisica\\ms-aula\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|d:\\site-fisica\\ms-aula\\features\\aulasessaofeature\\commands\\atualizaraulasessaomanyordemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|solutionrelative:features\\aulasessaofeature\\commands\\atualizaraulasessaomanyordemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|d:\\site-fisica\\ms-aula\\features\\aulasessaofeature\\aulasessaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|solutionrelative:features\\aulasessaofeature\\aulasessaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|d:\\site-fisica\\ms-aula\\domains\\aulasessao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E11222FD-723C-4D90-8E95-0CC4C147F362}|ms-aula.csproj|solutionrelative:domains\\aulasessao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AulaSessao.cs",
+              "DocumentMoniker": "D:\\site-fisica\\ms-aula\\Domains\\AulaSessao.cs",
+              "RelativeDocumentMoniker": "Domains\\AulaSessao.cs",
+              "ToolTip": "D:\\site-fisica\\ms-aula\\Domains\\AulaSessao.cs",
+              "RelativeToolTip": "Domains\\AulaSessao.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABIAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T22:20:49.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AulaSessaoController.cs",
+              "DocumentMoniker": "D:\\site-fisica\\ms-aula\\Features\\AulaSessaoFeature\\AulaSessaoController.cs",
+              "RelativeDocumentMoniker": "Features\\AulaSessaoFeature\\AulaSessaoController.cs",
+              "ToolTip": "D:\\site-fisica\\ms-aula\\Features\\AulaSessaoFeature\\AulaSessaoController.cs",
+              "RelativeToolTip": "Features\\AulaSessaoFeature\\AulaSessaoController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAA5wCQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T12:46:26.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AtualizarAulaSessaoManyOrdemCommand.cs",
+              "DocumentMoniker": "D:\\site-fisica\\ms-aula\\Features\\AulaSessaoFeature\\Commands\\AtualizarAulaSessaoManyOrdemCommand.cs",
+              "RelativeDocumentMoniker": "Features\\AulaSessaoFeature\\Commands\\AtualizarAulaSessaoManyOrdemCommand.cs",
+              "ToolTip": "D:\\site-fisica\\ms-aula\\Features\\AulaSessaoFeature\\Commands\\AtualizarAulaSessaoManyOrdemCommand.cs",
+              "RelativeToolTip": "Features\\AulaSessaoFeature\\Commands\\AtualizarAulaSessaoManyOrdemCommand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-16T14:44:22.338Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
