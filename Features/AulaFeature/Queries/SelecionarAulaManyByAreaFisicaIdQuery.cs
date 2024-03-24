@@ -94,11 +94,14 @@ namespace ms_aula.Features.AulaFeature.Queries
             {
                 AulaSessao sessao = new AulaSessao();
                 sessao.Id = aulaSessao.Id;
-                sessao.Ordem = aulaSessao.Ordem;
                 sessao.DataCadastro = aulaSessao.DataCadastro;
-                sessao.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;
                 sessao.DataAtualizacao = aulaSessao.DataAtualizacao;
+
+                sessao.Ordem = aulaSessao.Ordem;
+                sessao.Titulo = aulaSessao.Titulo;
+                sessao.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;
                 sessao.Conteudo = aulaSessao.Conteudo;
+                sessao.Favoritado = aulaSessao.Favoritado;
                 aulaSessaoMany.Add(sessao);
             }
             return aulaSessaoMany;
