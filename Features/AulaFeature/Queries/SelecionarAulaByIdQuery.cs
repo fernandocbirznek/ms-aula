@@ -54,8 +54,8 @@ namespace ms_aula.Features.AulaFeature.Queries
             response.Curtido = aula.Curtido;
             response.ProfessorId = aula.ProfessorId;
             response.AreaFisicaId = aula.AreaFisicaId;
-            response.AulaSessaoMany = aula.AulaSessaoMany;
-            response.AulaComentarioMany = aula.AulaComentarioMany;
+            response.AulaSessaoMany = getAulaSessaMany(aula.AulaSessaoMany);
+            response.AulaComentarioMany = getAulaComentarioMany(aula.AulaComentarioMany);
             response.DataCadastro = aula.DataCadastro;
             response.DataAtualizacao = aula.DataAtualizacao;
             response.Id = aula.Id;
@@ -85,6 +85,47 @@ namespace ms_aula.Features.AulaFeature.Queries
                     item => item.AulaComentarioMany,
                     item => item.AulaSessaoMany
                 );
+        }
+
+        private List<AulaSessao> getAulaSessaMany
+       (
+           ICollection<AulaSessao> entity
+       )
+        {
+            List<AulaSessao> aulaSessaoMany = new List<AulaSessao>();
+            foreach (AulaSessao aulaSessao in entity)
+            {
+                AulaSessao sessao = new AulaSessao();
+                sessao.Id = aulaSessao.Id;
+                sessao.DataCadastro = aulaSessao.DataCadastro;
+                sessao.DataAtualizacao = aulaSessao.DataAtualizacao;
+
+                sessao.Ordem = aulaSessao.Ordem;
+                sessao.Titulo = aulaSessao.Titulo;
+                sessao.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;
+                sessao.Conteudo = aulaSessao.Conteudo;
+                sessao.Favoritado = aulaSessao.Favoritado;
+                aulaSessaoMany.Add(sessao);
+            }
+            return aulaSessaoMany;
+        }
+
+        private List<AulaComentario> getAulaComentarioMany
+        (
+            ICollection<AulaComentario> entity
+        )
+        {
+            List<AulaComentario> aulaComentarioMany = new List<AulaComentario>();
+            foreach (AulaComentario aulaComentario in entity)
+            {
+                AulaComentario comentario = new AulaComentario();
+                comentario.Id = aulaComentario.Id;
+                comentario.Descricao = aulaComentario.Descricao;
+                comentario.DataCadastro = aulaComentario.DataCadastro;
+                comentario.UsuarioId = aulaComentario.UsuarioId;
+                aulaComentarioMany.Add(comentario);
+            }
+            return aulaComentarioMany;
         }
     }
 }

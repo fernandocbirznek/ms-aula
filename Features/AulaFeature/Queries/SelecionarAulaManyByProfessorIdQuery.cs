@@ -95,6 +95,7 @@ namespace ms_aula.Features.AulaFeature.Queries
                 AulaSessao sessao = new AulaSessao();
                 sessao.Id = aulaSessao.Id;
                 sessao.Ordem = aulaSessao.Ordem;
+                sessao.Titulo = aulaSessao.Titulo;
                 sessao.DataCadastro = aulaSessao.DataCadastro;
                 sessao.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;
                 sessao.DataAtualizacao = aulaSessao.DataAtualizacao;
