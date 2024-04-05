@@ -61,7 +61,7 @@ namespace ms_aula.Features.WidgetCursarFeature.Queries
         {
             return await _repository.GetAsync
                 (
-                    item => item.Id.Equals(request.Id),
+                    item => item.UsuarioId.Equals(request.Id),
                     cancellationToken,
                     item => item.Aula
                 );

@@ -5,17 +5,12 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.WidgetConcluidoFeature.Commands
 {
-    public class RemoverWidgetConcluidoCommand : IRequest<RemoverWidgetConcluidoCommandResponse>
+    public class RemoverWidgetConcluidoCommand : IRequest<long>
     {
         public long Id { get; set; }
     }
 
-    public class RemoverWidgetConcluidoCommandResponse
-    {
-        public long Id { get; set; }
-    }
-
-    public class RemoverWidgetConcluidoCommandHandler : IRequestHandler<RemoverWidgetConcluidoCommand, RemoverWidgetConcluidoCommandResponse>
+    public class RemoverWidgetConcluidoCommandHandler : IRequestHandler<RemoverWidgetConcluidoCommand, long>
     {
         private readonly IRepository<WidgetConcluido> _repository;
 
@@ -27,7 +22,7 @@ namespace ms_aula.Features.WidgetConcluidoFeature.Commands
             _repository = repository;
         }
 
-        public async Task<RemoverWidgetConcluidoCommandResponse> Handle
+        public async Task<long> Handle
         (
             RemoverWidgetConcluidoCommand request,
             CancellationToken cancellationToken
@@ -36,26 +31,18 @@ namespace ms_aula.Features.WidgetConcluidoFeature.Commands
             if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<RemoverWidgetConcluidoCommand>());
 
-            await Validator(request, cancellationToken);
 
-            WidgetConcluido widgetConcluido = await _repository.GetFirstAsync(item => item.Id.Equals(request.Id), cancellationToken);
+            if (!await ExistsAsync(request, cancellationToken))
+            {
+                return 0;
+            }
+
+            WidgetConcluido widgetConcluido = await _repository.GetFirstAsync(item => item.AulaId.Equals(request.Id), cancellationToken);
 
             await _repository.RemoveAsync(widgetConcluido);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            RemoverWidgetConcluidoCommandResponse response = new RemoverWidgetConcluidoCommandResponse();
-            response.Id = widgetConcluido.Id;
-
-            return response;
-        }
-
-        private async Task Validator
-        (
-            RemoverWidgetConcluidoCommand request,
-            CancellationToken cancellationToken
-        )
-        {
-            if (!await ExistsAsync(request, cancellationToken)) throw new ArgumentNullException("Widget aula concluido não encontrada");
+            return widgetConcluido.AulaId;
         }
 
         private async Task<bool> ExistsAsync
@@ -66,7 +53,7 @@ namespace ms_aula.Features.WidgetConcluidoFeature.Commands
         {
             return await _repository.ExistsAsync
                 (
-                    item => item.Id.Equals(request.Id),
+                    item => item.AulaId.Equals(request.Id),
                     cancellationToken
                 );
         }

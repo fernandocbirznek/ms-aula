@@ -31,7 +31,7 @@ namespace ms_aula.Features.WidgetCursarFeature
             return await this.SendAsync(_mediator, new RemoverWidgetCursarCommand() { Id = widgetCursarId });
         }
 
-        [HttpGet("selecionar-aulas-favoritadas/{usuarioId}")]
+        [HttpGet("selecionar-aulas-cursar/{usuarioId}")]
         public async Task<ActionResult> Get(long usuarioId)
         {
             return await this.SendAsync(_mediator, new SelecionarWidgetCursarManyByUsuarioIdQuery() { Id = usuarioId });

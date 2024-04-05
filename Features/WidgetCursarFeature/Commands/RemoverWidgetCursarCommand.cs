@@ -5,17 +5,12 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.WidgetCursarFeature.Commands
 {
-    public class RemoverWidgetCursarCommand : IRequest<RemoverWidgetCursarCommandResponse>
+    public class RemoverWidgetCursarCommand : IRequest<long>
     {
         public long Id { get; set; }
     }
 
-    public class RemoverWidgetCursarCommandResponse
-    {
-        public long Id { get; set; }
-    }
-
-    public class RemoverWidgetCursarCommandHandler : IRequestHandler<RemoverWidgetCursarCommand, RemoverWidgetCursarCommandResponse>
+    public class RemoverWidgetCursarCommandHandler : IRequestHandler<RemoverWidgetCursarCommand, long>
     {
         private readonly IRepository<WidgetCursar> _repository;
 
@@ -27,7 +22,7 @@ namespace ms_aula.Features.WidgetCursarFeature.Commands
             _repository = repository;
         }
 
-        public async Task<RemoverWidgetCursarCommandResponse> Handle
+        public async Task<long> Handle
         (
             RemoverWidgetCursarCommand request,
             CancellationToken cancellationToken
@@ -36,26 +31,17 @@ namespace ms_aula.Features.WidgetCursarFeature.Commands
             if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<RemoverWidgetCursarCommand>());
 
-            await Validator(request, cancellationToken);
+            if (!await ExistsAsync(request, cancellationToken))
+            {
+                return 0;
+            }
 
-            WidgetCursar widgetCursar = await _repository.GetFirstAsync(item => item.Id.Equals(request.Id), cancellationToken);
+            WidgetCursar widgetCursar = await _repository.GetFirstAsync(item => item.AulaId.Equals(request.Id), cancellationToken);
 
             await _repository.RemoveAsync(widgetCursar);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            RemoverWidgetCursarCommandResponse response = new RemoverWidgetCursarCommandResponse();
-            response.Id = widgetCursar.Id;
-
-            return response;
-        }
-
-        private async Task Validator
-        (
-            RemoverWidgetCursarCommand request,
-            CancellationToken cancellationToken
-        )
-        {
-            if (!await ExistsAsync(request, cancellationToken)) throw new ArgumentNullException("Aula não encontrada");
+            return widgetCursar.AulaId;
         }
 
         private async Task<bool> ExistsAsync
@@ -66,7 +52,7 @@ namespace ms_aula.Features.WidgetCursarFeature.Commands
         {
             return await _repository.ExistsAsync
                 (
-                    item => item.Id.Equals(request.Id),
+                    item => item.AulaId.Equals(request.Id),
                     cancellationToken
                 );
         }
