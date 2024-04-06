@@ -5,7 +5,7 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.AulaComentarioFeature.Commands
 {
-    public class RemoverAulaComentarioCommand : IRequest<RemoverAulaComentarioCommandResponse>
+    public class RemoverAulaComentarioCommand : IRequest<long>
     {
         public long Id { get; set; }
     }
@@ -15,7 +15,7 @@ namespace ms_aula.Features.AulaComentarioFeature.Commands
         public long Id { get; set; }
     }
 
-    public class RemoverAulaComentarioCommandHandler : IRequestHandler<RemoverAulaComentarioCommand, RemoverAulaComentarioCommandResponse>
+    public class RemoverAulaComentarioCommandHandler : IRequestHandler<RemoverAulaComentarioCommand, long>
     {
         private readonly IRepository<AulaComentario> _repository;
 
@@ -27,7 +27,7 @@ namespace ms_aula.Features.AulaComentarioFeature.Commands
             _repository = repository;
         }
 
-        public async Task<RemoverAulaComentarioCommandResponse> Handle
+        public async Task<long> Handle
         (
             RemoverAulaComentarioCommand request,
             CancellationToken cancellationToken
@@ -38,15 +38,12 @@ namespace ms_aula.Features.AulaComentarioFeature.Commands
 
             await Validator(request, cancellationToken);
 
-            AulaComentario aula = await _repository.GetFirstAsync(item => item.Id.Equals(request.Id), cancellationToken);
+            AulaComentario aulaComentario = await _repository.GetFirstAsync(item => item.Id.Equals(request.Id), cancellationToken);
 
-            await _repository.RemoveAsync(aula);
+            await _repository.RemoveAsync(aulaComentario);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            RemoverAulaComentarioCommandResponse response = new RemoverAulaComentarioCommandResponse();
-            response.Id = aula.Id;
-
-            return response;
+            return aulaComentario.Id;
         }
 
         private async Task Validator

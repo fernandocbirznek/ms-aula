@@ -38,13 +38,13 @@ namespace ms_aula.Features.AulaComentarioFeature
             return await this.SendAsync(_mediator, new RemoverAulaComentarioCommand() { Id = aulaComentarioId });
         }
 
-        [HttpGet("selecionar-aula-comentario/{aulaComentarioId}")]
-        public async Task<ActionResult> GetForum(long aulaComentarioId)
-        {
-            return await this.SendAsync(_mediator, new SelecionarAulaComentarioByIdQuery() { Id = aulaComentarioId });
-        }
+        //[HttpGet("selecionar-aula-comentario/{aulaComentarioId}")]
+        //public async Task<ActionResult> GetForum(long aulaComentarioId)
+        //{
+        //    return await this.SendAsync(_mediator, new SelecionarAulaComentarioByIdQuery() { Id = aulaComentarioId });
+        //}
 
-        [HttpGet("selecionar-comentarios-aulas/{aulaId}")]
+        [HttpGet("selecionar-aula-comentario/{aulaId}")]
         public async Task<ActionResult> Get(long aulaId)
         {
             return await this.SendAsync(_mediator, new SelecionarAulaComentarioManyByAulaIdQuery() { Id = aulaId });
