@@ -12,7 +12,13 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
 
     public class SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse : Entity
     {
-        public AulaSessao? AulaSessao { get; set; }
+        public long AulaId { get; set; }
+        public long AulaSessaoId { get; set; }
+        public string Titulo { get; set; }
+        public long Ordem { get; set; }
+        public string Conteudo { get; set; }
+        public long Favoritado { get; set; }
+        public AulaSessaoTipo AulaSessaoTipo { get; set; }
     }
 
     public class SelecionarAulaSessaoFavoritadaByUsuarioIdQueryHandler : IRequestHandler<SelecionarAulaSessaoFavoritadaByUsuarioIdQuery, IEnumerable<SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse>>
@@ -43,10 +49,17 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
             foreach (AulaSessaoFavoritada aulaFavoritada in aulaFavoritadaMany)
             {
                 SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse response = new SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse();
-                response.AulaSessao = aulaFavoritada.AulaSessao;
                 response.DataCadastro = aulaFavoritada.DataCadastro;
                 response.DataAtualizacao = aulaFavoritada.DataAtualizacao;
                 response.Id = aulaFavoritada.Id;
+
+                response.AulaId = aulaFavoritada.AulaSessao.AulaId;
+                response.AulaSessaoId = aulaFavoritada.AulaSessaoId;
+                response.Titulo = aulaFavoritada.AulaSessao.Titulo;
+                response.Ordem = aulaFavoritada.AulaSessao.Ordem;
+                response.Conteudo = aulaFavoritada.AulaSessao.Conteudo;
+                response.Favoritado = aulaFavoritada.AulaSessao.Favoritado;
+                response.AulaSessaoTipo = aulaFavoritada.AulaSessao.AulaSessaoTipo;
                 responseMany.Add(response);
             }
 
@@ -61,7 +74,7 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
         {
             return await _repository.GetAsync
                 (
-                    item => item.Id.Equals(request.Id),
+                    item => item.UsuarioId.Equals(request.Id),
                     cancellationToken,
                     item => item.AulaSessao
                 );

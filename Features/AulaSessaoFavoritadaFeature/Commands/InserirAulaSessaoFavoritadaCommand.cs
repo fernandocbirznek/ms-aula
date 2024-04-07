@@ -16,6 +16,14 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
     {
         public long Id { get; set; }
         public DateTime DataCadastro { get; set; }
+        public long AulaId { get; set; }
+        public long UsuarioId { get; set; }
+        public long AulaSessaoId { get; set; }
+        public string Titulo { get; set; }
+        public long Ordem { get; set; }
+        public string Conteudo { get; set; }
+        public long Favoritado { get; set; }
+        public AulaSessaoTipo AulaSessaoTipo { get; set; }
     }
 
     public class InserirAulaSessaoFavoritadaHandler : IRequestHandler<InserirAulaSessaoFavoritadaCommand, InserirAulaSessaoFavoritadaCommandResponse>
@@ -44,6 +52,8 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
 
             await Validator(request, cancellationToken);
 
+            AulaSessao aulaSessao = await GetAulaSessaoFirstAsync(request, cancellationToken);
+
             AulaSessaoFavoritada aula = request.ToDomain();
 
             await _repository.AddAsync(aula, cancellationToken);
@@ -52,6 +62,15 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
             InserirAulaSessaoFavoritadaCommandResponse response = new InserirAulaSessaoFavoritadaCommandResponse();
             response.DataCadastro = aula.DataCadastro;
             response.Id = aula.Id;
+
+            response.AulaId = aulaSessao.AulaId;
+            response.AulaSessaoId = request.AulaSessaoId;
+            response.Titulo = aulaSessao.Titulo;
+            response.Ordem = aulaSessao.Ordem;
+            response.Conteudo = aulaSessao.Conteudo;
+            response.Favoritado = aulaSessao.Favoritado;
+            response.AulaSessaoTipo = aulaSessao.AulaSessaoTipo;
+            response.UsuarioId = request.UsuarioId;
 
             return response;
         }
@@ -74,6 +93,19 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
         )
         {
             return await _repositoryAulaSessao.ExistsAsync
+                (
+                    item => item.Id.Equals(request.AulaSessaoId),
+                    cancellationToken
+                );
+        }
+
+        private async Task<AulaSessao> GetAulaSessaoFirstAsync
+        (
+            InserirAulaSessaoFavoritadaCommand request,
+            CancellationToken cancellationToken
+        )
+        {
+            return await _repositoryAulaSessao.GetFirstAsync
                 (
                     item => item.Id.Equals(request.AulaSessaoId),
                     cancellationToken

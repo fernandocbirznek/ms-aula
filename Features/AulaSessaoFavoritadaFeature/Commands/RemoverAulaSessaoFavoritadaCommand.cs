@@ -5,17 +5,13 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
 {
-    public class RemoverAulaSessaoFavoritadaCommand : IRequest<RemoverAulaSessaoFavoritadaCommandResponse>
+    public class RemoverAulaSessaoFavoritadaCommand : IRequest<long>
     {
-        public long Id { get; set; }
+        public long UsuarioId { get; set; }
+        public long AulaSessaoId { get; set; }
     }
 
-    public class RemoverAulaSessaoFavoritadaCommandResponse
-    {
-        public long Id { get; set; }
-    }
-
-    public class RemoverAulaSessaoFavoritadaCommandHandler : IRequestHandler<RemoverAulaSessaoFavoritadaCommand, RemoverAulaSessaoFavoritadaCommandResponse>
+    public class RemoverAulaSessaoFavoritadaCommandHandler : IRequestHandler<RemoverAulaSessaoFavoritadaCommand, long>
     {
         private readonly IRepository<AulaSessaoFavoritada> _repository;
 
@@ -27,7 +23,7 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
             _repository = repository;
         }
 
-        public async Task<RemoverAulaSessaoFavoritadaCommandResponse> Handle
+        public async Task<long> Handle
         (
             RemoverAulaSessaoFavoritadaCommand request,
             CancellationToken cancellationToken
@@ -38,15 +34,16 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
 
             await Validator(request, cancellationToken);
 
-            AulaSessaoFavoritada aulaSessaoFavoritada = await _repository.GetFirstAsync(item => item.Id.Equals(request.Id), cancellationToken);
+            AulaSessaoFavoritada aulaSessaoFavoritada = await _repository.GetFirstAsync
+                (
+                    item => item.UsuarioId.Equals(request.UsuarioId) && item.AulaSessaoId.Equals(request.AulaSessaoId), 
+                    cancellationToken
+                );
 
             await _repository.RemoveAsync(aulaSessaoFavoritada);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            RemoverAulaSessaoFavoritadaCommandResponse response = new RemoverAulaSessaoFavoritadaCommandResponse();
-            response.Id = aulaSessaoFavoritada.Id;
-
-            return response;
+            return aulaSessaoFavoritada.Id;
         }
 
         private async Task Validator
@@ -66,7 +63,7 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Commands
         {
             return await _repository.ExistsAsync
                 (
-                    item => item.Id.Equals(request.Id),
+                    item => item.UsuarioId.Equals(request.UsuarioId) && item.AulaSessaoId.Equals(request.AulaSessaoId),
                     cancellationToken
                 );
         }
