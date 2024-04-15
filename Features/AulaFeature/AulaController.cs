@@ -70,5 +70,11 @@ namespace ms_aula.Features.AulaFeature
         {
             return await this.SendAsync(_mediator, new SelecionarAulaManyByAreaFisicaIdQuery() { Id = areaFisicaId });
         }
+
+        [HttpGet("selecionar-aulas-sistema")]
+        public async Task<ActionResult> GetAulaSistema()
+        {
+            return await this.SendAsync(_mediator, new SelecionarManyAulaFiltersQuery());
+        }
     }
 }
