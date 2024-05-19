@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ms_aula;
@@ -11,9 +12,11 @@ using ms_aula;
 namespace ms_aula.Migrations
 {
     [DbContext(typeof(AulaDbContext))]
-    partial class AulaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240517232831_TagAndAulaTag")]
+    partial class TagAndAulaTag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,12 +57,6 @@ namespace ms_aula.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AreaFisicaId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("AulaAnteriorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("AulaPosteriorId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("Curtido")

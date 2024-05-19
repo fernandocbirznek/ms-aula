@@ -7,7 +7,10 @@
         public long Favoritado { get; set; }
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
-
+        public bool Publicado { get; set; }
+        public long? AulaAnteriorId { get; set; }
+        public long? AulaPosteriorId { get; set; }
+        public virtual ICollection<AulaTag>? AulaTagMany { get; set; }
         public virtual ICollection<AulaComentario>? AulaComentarioMany { get; set; }
         public virtual ICollection<AulaSessao>? AulaSessaoMany { get; set; }
         public long AreaFisicaId { get; set; }

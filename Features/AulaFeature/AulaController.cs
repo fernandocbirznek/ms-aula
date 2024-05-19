@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ms_aula.Domains;
 using ms_aula.Extensions;
 using ms_aula.Features.AulaFeature.Commands;
 using ms_aula.Features.AulaFeature.Queries;
@@ -42,6 +41,13 @@ namespace ms_aula.Features.AulaFeature
         [HttpPut("atualizar-favoritada")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Put(AtualizarAulaFavoritadaCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
+
+        [HttpPut("atualizar-publicado")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> Put(AtualizarAulaPublicadoCommand request)
         {
             return await this.SendAsync(_mediator, request);
         }

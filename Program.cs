@@ -3,9 +3,9 @@ using ms_aula;
 using ms_aula.Domains;
 using ms_aula.Extensions;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 var builder = WebApplication.CreateBuilder(args);
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
@@ -34,6 +34,8 @@ builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaCom
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaFavoritada).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaSessao).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaSessaoFavoritada).Assembly));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaTag).Assembly));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(Tag).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetConcluido).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetCursando).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetCursar).Assembly));

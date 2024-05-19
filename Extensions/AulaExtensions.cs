@@ -15,6 +15,7 @@ namespace ms_aula.Extensions
                 Curtido = 0,
                 ProfessorId = request.ProfessorId,
                 AreaFisicaId = request.AreaFisicaId,
+                Publicado = false,
                 DataCadastro = DateTime.Now
             };
         }

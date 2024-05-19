@@ -11,6 +11,8 @@ namespace ms_aula.Features.AulaFeature.Commands
         public string Titulo { get; set; }
         public string Resumo { get; set; }
         public long AreaFisicaId { get; set; }
+        public long? AulaAnteriorId { get; set; }
+        public long? AulaPosteriorId { get; set; }
     }
 
     public class AtualizarAulaCommandResponse
@@ -45,6 +47,8 @@ namespace ms_aula.Features.AulaFeature.Commands
             aula.Titulo = request.Titulo;
             aula.Resumo = request.Resumo;
             aula.AreaFisicaId = request.AreaFisicaId;
+            aula.AulaAnteriorId = request.AulaAnteriorId;
+            aula.AulaPosteriorId = request.AulaPosteriorId;
 
             await _repositoryAula.UpdateAsync(aula);
             await _repositoryAula.SaveChangesAsync(cancellationToken);
@@ -65,7 +69,6 @@ namespace ms_aula.Features.AulaFeature.Commands
             if (String.IsNullOrEmpty(request.Titulo)) throw new ArgumentNullException(MessageHelper.NullFor<InserirAulaCommand>(item => item.Titulo));
             if (!(await ExistsAsync(request, cancellationToken))) throw new ArgumentNullException("Área da Física não encontrada");
             if (request.AreaFisicaId <= 0) throw new ArgumentNullException(MessageHelper.NullFor<InserirAulaCommand>(item => item.AreaFisicaId));
-            if (await ExistsTituloAsync(request, cancellationToken)) throw new ArgumentNullException("Título já cadastrado");
         }
 
         private async Task<Aula> GetFirstAsync

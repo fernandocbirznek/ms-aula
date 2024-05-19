@@ -15,6 +15,8 @@ namespace ms_aula.Extensions
             services.AddScoped(typeof(IRepository<AulaFavoritada>), typeof(Repository<AulaFavoritada>));
             services.AddScoped(typeof(IRepository<AulaSessao>), typeof(Repository<AulaSessao>));
             services.AddScoped(typeof(IRepository<AulaSessaoFavoritada>), typeof(Repository<AulaSessaoFavoritada>));
+            services.AddScoped(typeof(IRepository<AulaTag>), typeof(Repository<AulaTag>));
+            services.AddScoped(typeof(IRepository<Tag>), typeof(Repository<Tag>));
             services.AddScoped(typeof(IRepository<WidgetConcluido>), typeof(Repository<WidgetConcluido>));
             services.AddScoped(typeof(IRepository<WidgetCursando>), typeof(Repository<WidgetCursando>));
             services.AddScoped(typeof(IRepository<WidgetCursar>), typeof(Repository<WidgetCursar>));

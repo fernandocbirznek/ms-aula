@@ -18,6 +18,9 @@ namespace ms_aula.Features.AulaFeature.Queries
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
         public long AreaFisicaId { get; set; }
+        public long? AulaAnteriorId { get; set; }
+        public long? AulaPosteriorId { get; set; }
+        public ICollection<AulaTag>? AulaTagMany { get; set; }
         public ICollection<AulaComentario>? AulaComentarioMany { get; set; }
         public ICollection<AulaSessao>? AulaSessaoMany { get; set; }
     }
@@ -56,7 +59,10 @@ namespace ms_aula.Features.AulaFeature.Queries
                 response.Curtido = aula.Curtido;
                 response.ProfessorId = aula.ProfessorId;
                 response.AreaFisicaId = aula.AreaFisicaId;
+                response.AulaAnteriorId = aula.AulaAnteriorId;
+                response.AulaPosteriorId = aula.AulaPosteriorId;
 
+                response.AulaTagMany = getAulaTagMany(aula.AulaTagMany);
                 response.AulaSessaoMany = getAulaSessaMany(aula.AulaSessaoMany);
                 response.AulaComentarioMany = getAulaComentarioMany(aula.AulaComentarioMany);
 
@@ -80,8 +86,29 @@ namespace ms_aula.Features.AulaFeature.Queries
                     item => item.ProfessorId.Equals(request.Id),
                     cancellationToken,
                     item => item.AulaComentarioMany,
-                    item => item.AulaSessaoMany
+                    item => item.AulaSessaoMany,
+                    item => item.AulaTagMany
                 );
+        }
+
+        private List<AulaTag> getAulaTagMany
+        (
+            ICollection<AulaTag> entity
+        )
+        {
+            List<AulaTag> aulaTagMany = new List<AulaTag>();
+            foreach (AulaTag aulaTag in entity)
+            {
+                AulaTag sessao = new AulaTag();
+                sessao.Id = aulaTag.Id;
+                sessao.DataCadastro = aulaTag.DataCadastro;
+                sessao.DataAtualizacao = aulaTag.DataAtualizacao;
+
+                sessao.AulaId = aulaTag.AulaId;
+                sessao.TagId = aulaTag.TagId;
+                aulaTagMany.Add(sessao);
+            }
+            return aulaTagMany;
         }
 
         private List<AulaSessao> getAulaSessaMany

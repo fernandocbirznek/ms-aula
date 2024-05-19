@@ -13,6 +13,8 @@ namespace ms_aula
         public DbSet<AulaFavoritada> AulaFavoritada { get; set; }
         public DbSet<AulaSessao> AulaSessao { get; set; }
         public DbSet<AulaSessaoFavoritada> AulaSessaoFavoritada { get; set; }
+        public DbSet<AulaTag> AulaTag { get; set; }
+        public DbSet<Tag> Tag { get; set; }
         public DbSet<WidgetConcluido> WidgetConcluido { get; set; }
         public DbSet<WidgetCursando> WidgetCursando { get; set; }
         public DbSet<WidgetCursar> WidgetCursar { get; set; }
