@@ -8,7 +8,7 @@ namespace ms_aula.Features.AulaFeature.Commands
     public class AtualizarAulaCurtirCommand : IRequest<AtualizarAulaCurtirCommandResponse>
     {
         public long Id { get; set; }
-        public long Curtido { get; set; }
+        public bool Adicionar { get; set; }
     }
 
     public class AtualizarAulaCurtirCommandResponse
@@ -40,7 +40,7 @@ namespace ms_aula.Features.AulaFeature.Commands
             await Validator(request, cancellationToken);
 
             Aula aula = await GetFirstAsync(request, cancellationToken);
-            aula.Curtido = request.Curtido;
+            aula.Curtido = request.Adicionar ? aula.Curtido + 1 : aula.Curtido - 1;
 
             await _repositoryAula.UpdateAsync(aula);
             await _repositoryAula.SaveChangesAsync(cancellationToken);

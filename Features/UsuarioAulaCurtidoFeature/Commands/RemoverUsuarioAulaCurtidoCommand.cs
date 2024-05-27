@@ -4,60 +4,58 @@ using ms_aula.Features.AulaFeature.Commands;
 using ms_aula.Helpers;
 using ms_aula.Interface;
 
-namespace ms_aula.Features.AulaFavoritadaFeature.Commands
+namespace ms_aula.Features.UsuarioAulaCurtidoFeature.Commands
 {
-    public class RemoverAulaFavoritadaCommand : IRequest<long>
+    public class RemoverUsuarioAulaCurtidoCommand : IRequest<long>
     {
         public long Id { get; set; }
+        public long AulaId { get; set; }
     }
 
-    public class RemoverAulaFavoritadaCommandHandler
-        : IRequestHandler<RemoverAulaFavoritadaCommand, long>
+    public class RemoverUsuarioAulaCurtidoCommandHandler
+        : IRequestHandler<RemoverUsuarioAulaCurtidoCommand, long>
     {
         private IMediator _mediator;
+        private readonly IRepository<UsuarioAulaCurtido> _repository;
 
-        private readonly IRepository<AulaFavoritada> _repository;
-
-        public RemoverAulaFavoritadaCommandHandler
+        public RemoverUsuarioAulaCurtidoCommandHandler
         (
             IMediator mediator,
-
-            IRepository<AulaFavoritada> repository
+            IRepository<UsuarioAulaCurtido> repository
         )
         {
             _mediator = mediator;
-
             _repository = repository;
         }
 
         public async Task<long> Handle
         (
-            RemoverAulaFavoritadaCommand request,
+            RemoverUsuarioAulaCurtidoCommand request,
             CancellationToken cancellationToken
         )
         {
             if (request is null)
-                throw new ArgumentNullException(MessageHelper.NullFor<RemoverAulaFavoritadaCommand>());
+                throw new ArgumentNullException(MessageHelper.NullFor<RemoverUsuarioAulaCurtidoCommand>());
 
             await Validator(request, cancellationToken);
 
-            AulaFavoritada aulaFavoritada = await _repository.GetFirstAsync
+            UsuarioAulaCurtido usuarioAulaCurtido = await _repository.GetFirstAsync
                 (
                     item => item.Id.Equals(request.Id),
-                    cancellationToken
-                );
+            cancellationToken
+            );
 
-            await _mediator.Send(new AtualizarAulaFavoritadaCommand { Id = aulaFavoritada.AulaId, Adicionar = false });
+            await _mediator.Send(new AtualizarAulaCurtirCommand { Id = request.AulaId, Adicionar = false });
 
-            await _repository.RemoveAsync(aulaFavoritada);
+            await _repository.RemoveAsync(usuarioAulaCurtido);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            return aulaFavoritada.Id;
+            return usuarioAulaCurtido.Id;
         }
 
         private async Task Validator
         (
-            RemoverAulaFavoritadaCommand request,
+            RemoverUsuarioAulaCurtidoCommand request,
             CancellationToken cancellationToken
         )
         {
@@ -66,7 +64,7 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Commands
 
         private async Task<bool> ExistsAsync
         (
-            RemoverAulaFavoritadaCommand request,
+            RemoverUsuarioAulaCurtidoCommand request,
             CancellationToken cancellationToken
         )
         {

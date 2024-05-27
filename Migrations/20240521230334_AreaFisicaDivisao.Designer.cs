@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ms_aula;
@@ -11,9 +12,11 @@ using ms_aula;
 namespace ms_aula.Migrations
 {
     [DbContext(typeof(AulaDbContext))]
-    partial class AulaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240521230334_AreaFisicaDivisao")]
+    partial class AreaFisicaDivisao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,33 +316,6 @@ namespace ms_aula.Migrations
                     b.ToTable("Tag");
                 });
 
-            modelBuilder.Entity("ms_aula.Domains.UsuarioAulaCurtido", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("AulaId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("UsuarioId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AulaId");
-
-                    b.ToTable("UsuarioAulaCurtido");
-                });
-
             modelBuilder.Entity("ms_aula.Domains.WidgetConcluido", b =>
                 {
                     b.Property<long>("Id")
@@ -504,17 +480,6 @@ namespace ms_aula.Migrations
                     b.Navigation("Aula");
 
                     b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("ms_aula.Domains.UsuarioAulaCurtido", b =>
-                {
-                    b.HasOne("ms_aula.Domains.Aula", "Aula")
-                        .WithMany()
-                        .HasForeignKey("AulaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aula");
                 });
 
             modelBuilder.Entity("ms_aula.Domains.WidgetConcluido", b =>

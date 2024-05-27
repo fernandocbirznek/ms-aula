@@ -8,7 +8,9 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
 {
     public class InserirAreaFisicaCommand : IRequest<InserirAreaFisicaCommandResponse>
     {
+        public string Titulo { get; set; }
         public string Descricao { get; set; }
+        public string Aplicacao { get; set; }
     }
 
     public class InserirAreaFisicaCommandResponse

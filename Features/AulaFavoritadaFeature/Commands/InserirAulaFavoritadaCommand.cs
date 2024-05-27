@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using ms_aula.Domains;
 using ms_aula.Extensions;
+using ms_aula.Features.AulaFeature.Commands;
 using ms_aula.Helpers;
 using ms_aula.Interface;
 
@@ -15,20 +16,28 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Commands
     public class InserirAulaFavoritadaCommandResponse
     {
         public long Id { get; set; }
+        public long UsuarioId { get; set; }
+        public long AulaId { get; set; }
         public DateTime DataCadastro { get; set; }
     }
 
     public class InserirAulaFavoritadaHandler : IRequestHandler<InserirAulaFavoritadaCommand, InserirAulaFavoritadaCommandResponse>
     {
+        private IMediator _mediator;
+
         private readonly IRepository<AulaFavoritada> _repository;
         private readonly IRepository<Aula> _repositoryAula;
 
         public InserirAulaFavoritadaHandler
         (
+            IMediator mediator,
+
             IRepository<AulaFavoritada> repository,
             IRepository<Aula> repositoryAula
         )
         {
+            _mediator = mediator;
+
             _repository = repository;
             _repositoryAula = repositoryAula;
         }
@@ -46,11 +55,15 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Commands
 
             AulaFavoritada aula = request.ToDomain();
 
+            await _mediator.Send(new AtualizarAulaFavoritadaCommand { Id = request.AulaId, Adicionar = true });
+
             await _repository.AddAsync(aula, cancellationToken);
             await _repository.SaveChangesAsync(cancellationToken);
 
             InserirAulaFavoritadaCommandResponse response = new InserirAulaFavoritadaCommandResponse();
             response.DataCadastro = aula.DataCadastro;
+            response.AulaId = aula.AulaId;
+            response.UsuarioId = aula.UsuarioId;
             response.Id = aula.Id;
 
             return response;

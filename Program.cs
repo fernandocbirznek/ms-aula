@@ -29,6 +29,7 @@ builder.Services.SetupRepositories();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AreaFisica).Assembly));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AreaFisicaDivisao).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(Aula).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaComentario).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaFavoritada).Assembly));
@@ -36,6 +37,7 @@ builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaSes
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaSessaoFavoritada).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaTag).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(Tag).Assembly));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(UsuarioAulaCurtido).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetConcluido).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetCursando).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(WidgetCursar).Assembly));

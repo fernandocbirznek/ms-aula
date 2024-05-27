@@ -8,7 +8,7 @@ namespace ms_aula.Features.AulaFeature.Commands
     public class AtualizarAulaFavoritadaCommand : IRequest<AtualizarAulaFavoritadaCommandResponse>
     {
         public long Id { get; set; }
-        public long Favoritado { get; set; }
+        public bool Adicionar { get; set; }
     }
 
     public class AtualizarAulaFavoritadaCommandResponse
@@ -16,7 +16,8 @@ namespace ms_aula.Features.AulaFeature.Commands
         public DateTime DataAtualizacao { get; set; }
     }
 
-    public class AtualizarAulaFavoritadaHandler : IRequestHandler<AtualizarAulaFavoritadaCommand, AtualizarAulaFavoritadaCommandResponse>
+    public class AtualizarAulaFavoritadaHandler 
+        : IRequestHandler<AtualizarAulaFavoritadaCommand, AtualizarAulaFavoritadaCommandResponse>
     {
         private readonly IRepository<Aula> _repositoryAula;
 
@@ -40,7 +41,7 @@ namespace ms_aula.Features.AulaFeature.Commands
             await Validator(request, cancellationToken);
 
             Aula aula = await GetFirstAsync(request, cancellationToken);
-            aula.Favoritado = request.Favoritado;
+            aula.Favoritado = request.Adicionar ? aula.Favoritado + 1 : aula.Favoritado - 1;
 
             await _repositoryAula.UpdateAsync(aula);
             await _repositoryAula.SaveChangesAsync(cancellationToken);

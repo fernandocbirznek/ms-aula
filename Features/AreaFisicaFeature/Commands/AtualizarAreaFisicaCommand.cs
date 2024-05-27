@@ -8,7 +8,9 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
     public class AtualizarAreaFisicaCommand : IRequest<AtualizarAreaFisicaCommandResponse>
     {
         public long Id { get; set; }
+        public string Titulo { get; set; }
         public string Descricao { get; set; }
+        public string Aplicacao { get; set; }
     }
 
     public class AtualizarAreaFisicaCommandResponse
@@ -40,7 +42,9 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
             await Validator(request, cancellationToken);
 
             AreaFisica areaFisica = await GetFirstAsync(request, cancellationToken);
+            areaFisica.Titulo = request.Titulo;
             areaFisica.Descricao = request.Descricao;
+            areaFisica.Aplicacao = request.Aplicacao;
 
             await _repositoryAreaFisica.UpdateAsync(areaFisica);
             await _repositoryAreaFisica.SaveChangesAsync(cancellationToken);

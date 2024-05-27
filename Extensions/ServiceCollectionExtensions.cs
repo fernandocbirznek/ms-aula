@@ -10,13 +10,15 @@ namespace ms_aula.Extensions
         public static void SetupRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<AreaFisica>), typeof(Repository<AreaFisica>));
+            services.AddScoped(typeof(IRepository<AreaFisicaDivisao>), typeof(Repository<AreaFisicaDivisao>));
             services.AddScoped(typeof(IRepository<Aula>), typeof(Repository<Aula>));
             services.AddScoped(typeof(IRepository<AulaComentario>), typeof(Repository<AulaComentario>));
             services.AddScoped(typeof(IRepository<AulaFavoritada>), typeof(Repository<AulaFavoritada>));
             services.AddScoped(typeof(IRepository<AulaSessao>), typeof(Repository<AulaSessao>));
             services.AddScoped(typeof(IRepository<AulaSessaoFavoritada>), typeof(Repository<AulaSessaoFavoritada>));
             services.AddScoped(typeof(IRepository<AulaTag>), typeof(Repository<AulaTag>));
-            services.AddScoped(typeof(IRepository<Tag>), typeof(Repository<Tag>));
+            services.AddScoped(typeof(IRepository<Tag>), typeof(Repository<Tag>)); 
+            services.AddScoped(typeof(IRepository<UsuarioAulaCurtido>), typeof(Repository<UsuarioAulaCurtido>));
             services.AddScoped(typeof(IRepository<WidgetConcluido>), typeof(Repository<WidgetConcluido>));
             services.AddScoped(typeof(IRepository<WidgetCursando>), typeof(Repository<WidgetCursando>));
             services.AddScoped(typeof(IRepository<WidgetCursar>), typeof(Repository<WidgetCursar>));

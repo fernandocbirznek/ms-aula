@@ -2,7 +2,6 @@
 using ms_aula.Domains;
 using ms_aula.Helpers;
 using ms_aula.Interface;
-using System.Collections.Generic;
 
 namespace ms_aula.Features.AulaFavoritadaFeature.Queries
 {
@@ -13,22 +12,20 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Queries
 
     public class SelecionarAulaFavoritadaByUsuarioIdQueryResponse : Entity
     {
-        public Aula? Aula { get; set; }
+        public long UsuarioId { get; set; }
+        public long AulaId { get; set; }
     }
 
     public class SelecionarAulaFavoritadaByUsuarioIdQueryHandler : IRequestHandler<SelecionarAulaFavoritadaByUsuarioIdQuery, IEnumerable<SelecionarAulaFavoritadaByUsuarioIdQueryResponse>>
     {
         private readonly IRepository<AulaFavoritada> _repository;
-        private readonly IRepository<AreaFisica> _repositoryAreaFisica;
 
         public SelecionarAulaFavoritadaByUsuarioIdQueryHandler
         (
-            IRepository<AulaFavoritada> repository,
-            IRepository<AreaFisica> repositoryAreaFisica
+            IRepository<AulaFavoritada> repository
         )
         {
             _repository = repository;
-            _repositoryAreaFisica = repositoryAreaFisica;
         }
 
         public async Task<IEnumerable<SelecionarAulaFavoritadaByUsuarioIdQueryResponse>> Handle
@@ -41,15 +38,15 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Queries
                 throw new ArgumentNullException(MessageHelper.NullFor<SelecionarAulaFavoritadaByUsuarioIdQuery>());
 
             IEnumerable<AulaFavoritada> aulaFavoritadaMany = await GetAsync(request, cancellationToken);
-            IEnumerable<AreaFisica> areaFisicaMany = await GetAreaFisicaAsync(cancellationToken);
 
             List<SelecionarAulaFavoritadaByUsuarioIdQueryResponse> responseMany = new List<SelecionarAulaFavoritadaByUsuarioIdQueryResponse>();
 
             foreach (AulaFavoritada aulaFavoritada in aulaFavoritadaMany)
             {
                 SelecionarAulaFavoritadaByUsuarioIdQueryResponse response = new SelecionarAulaFavoritadaByUsuarioIdQueryResponse();
-                response.Aula = aulaFavoritada.Aula;
-                response.Aula.AreaFisica = GetAreaFisica(aulaFavoritada, areaFisicaMany);
+                response.UsuarioId = aulaFavoritada.UsuarioId;
+                response.AulaId = aulaFavoritada.AulaId;
+
                 response.DataCadastro = aulaFavoritada.DataCadastro;
                 response.DataAtualizacao = aulaFavoritada.DataAtualizacao;
                 response.Id = aulaFavoritada.Id;
@@ -68,29 +65,8 @@ namespace ms_aula.Features.AulaFavoritadaFeature.Queries
             return await _repository.GetAsync
                 (
                     item => item.UsuarioId.Equals(request.Id),
-                    cancellationToken,
-                    item => item.Aula
-                );
-        }
-
-        private async Task<IEnumerable<AreaFisica>> GetAreaFisicaAsync
-        (
-            CancellationToken cancellationToken
-        )
-        {
-            return await _repositoryAreaFisica.GetAsync
-                (
                     cancellationToken
                 );
-        }
-
-        private AreaFisica GetAreaFisica
-        (
-            AulaFavoritada aulaFavoritada,
-            IEnumerable<AreaFisica> areaFisicaMany
-        )
-        {
-            return areaFisicaMany.FirstOrDefault(item => item.Id.Equals(aulaFavoritada.Aula.AreaFisicaId));
         }
     }
 }

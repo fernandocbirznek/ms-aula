@@ -12,6 +12,8 @@ namespace ms_aula.Features.AreaFisicaFeature.Queries
     public class SelecionarAreaFisicaFiltersQueryResponse : Entity
     {
         public string Descricao { get; set; }
+        public string Titulo { get; set; }
+        public string Aplicacao { get; set; }
     }
 
     public class SelecionarAreaFisicaFiltersQueryResponseHandler : IRequestHandler<SelecionarAreaFisicaFiltersQuery, IEnumerable<SelecionarAreaFisicaFiltersQueryResponse>>
@@ -43,6 +45,9 @@ namespace ms_aula.Features.AreaFisicaFeature.Queries
             {
                 SelecionarAreaFisicaFiltersQueryResponse response = new SelecionarAreaFisicaFiltersQueryResponse();
                 response.Descricao = areaFisica.Descricao;
+                response.Titulo = areaFisica.Titulo;
+                response.Aplicacao = areaFisica.Aplicacao;
+
                 response.DataCadastro = areaFisica.DataCadastro;
                 response.DataAtualizacao = areaFisica.DataAtualizacao;
                 response.Id = areaFisica.Id;

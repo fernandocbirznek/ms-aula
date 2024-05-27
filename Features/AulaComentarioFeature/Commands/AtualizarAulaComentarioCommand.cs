@@ -50,7 +50,7 @@ namespace ms_aula.Features.AulaComentarioFeature.Commands
             await _repositoryAulaComentario.SaveChangesAsync(cancellationToken);
 
             AtualizarAulaComentarioCommandResponse response = new AtualizarAulaComentarioCommandResponse();
-            response.DataAtualizacao = aulaComentario.DataAtualizacao;
+            response.DataAtualizacao = DateTime.Now;
 
             return response;
         }
