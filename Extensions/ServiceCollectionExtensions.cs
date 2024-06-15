@@ -11,6 +11,7 @@ namespace ms_aula.Extensions
         {
             services.AddScoped(typeof(IRepository<AreaFisica>), typeof(Repository<AreaFisica>));
             services.AddScoped(typeof(IRepository<AreaFisicaDivisao>), typeof(Repository<AreaFisicaDivisao>));
+            services.AddScoped(typeof(IRepository<ArquivoPdf>), typeof(Repository<ArquivoPdf>));
             services.AddScoped(typeof(IRepository<Aula>), typeof(Repository<Aula>));
             services.AddScoped(typeof(IRepository<AulaComentario>), typeof(Repository<AulaComentario>));
             services.AddScoped(typeof(IRepository<AulaFavoritada>), typeof(Repository<AulaFavoritada>));

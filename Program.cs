@@ -30,6 +30,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AreaFisica).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AreaFisicaDivisao).Assembly));
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(ArquivoPdf).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(Aula).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaComentario).Assembly));
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(AulaFavoritada).Assembly));

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y93gS2Y3BX8NyRgXwwOB1JvTjlvBCJiEUyio8yjxtIF57e1lCCZopIY61JGzoSgWJffN74xQoW9Yp07EuociFQ==",
+  "dgSpecHash": "QOCSc3Q2h9ZrOfGijKwzlsfukO/sB4I/b0Z93SSHUZBwwMjbVDY8MfeL3bDFGdSggSTjFPs355Tld5wkqr/1iw==",
   "success": true,
   "projectFilePath": "D:\\site-fisica\\ms-aula\\ms-aula.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",

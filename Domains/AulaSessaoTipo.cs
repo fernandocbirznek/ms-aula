@@ -2,11 +2,13 @@
 {
     public enum AulaSessaoTipo
     {
+        None,
         Conceito,
         Equacao,
-        Exercicio,
         Imagem,
         Video,
-        Texto
+        Texto,
+        Aula,
+        Pdf
     }
 }

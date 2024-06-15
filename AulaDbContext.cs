@@ -9,6 +9,7 @@ namespace ms_aula
         public AulaDbContext(DbContextOptions<AulaDbContext> options) : base(options) { }
         public DbSet<AreaFisica> AreaFisica { get; set; }
         public DbSet<AreaFisicaDivisao> AreaFisicaDivisao { get; set; }
+        public DbSet<ArquivoPdf> ArquivoPdf { get; set; }
         public DbSet<Aula> Aula { get; set; }
         public DbSet<AulaComentario> AulaComentario { get; set; }
         public DbSet<AulaFavoritada> AulaFavoritada { get; set; }
