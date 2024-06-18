@@ -18,6 +18,7 @@ namespace ms_aula.Features.AulaFeature.Queries
         public long Curtido { get; set; }
         public long ProfessorId { get; set; }
         public long AreaFisicaId { get; set; }
+        public bool Publicado { get; set; }
         public long? AulaAnteriorId { get; set; }
         public long? AulaPosteriorId { get; set; }
         public ICollection<AulaTag>? AulaTagMany { get; set; }
@@ -59,6 +60,7 @@ namespace ms_aula.Features.AulaFeature.Queries
             response.AreaFisicaId = aula.AreaFisicaId;
             response.AulaAnteriorId = aula.AulaAnteriorId;
             response.AulaPosteriorId = aula.AulaPosteriorId;
+            response.Publicado = aula.Publicado;
 
             response.AulaTagMany = getAulaTagMany(aula.AulaTagMany);
             response.AulaSessaoMany = getAulaSessaMany(aula.AulaSessaoMany);

@@ -52,6 +52,20 @@ namespace ms_aula.Features.AulaFeature
             return await this.SendAsync(_mediator, request);
         }
 
+        [HttpPut("atualizar-aula-posterior")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> Put(AtualizarAulaPosteriorCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
+
+        [HttpPut("atualizar-aula-anterior")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> Put(AtualizarAulaAnteriorCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
+
         [HttpDelete("excluir/{aulaId}")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Delete(long aulaId)

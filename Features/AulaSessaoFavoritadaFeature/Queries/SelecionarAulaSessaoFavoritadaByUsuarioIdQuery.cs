@@ -17,6 +17,7 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
         public string Titulo { get; set; }
         public long Ordem { get; set; }
         public string Conteudo { get; set; }
+        public byte[] ArquivoConteudo { get; set; }
         public long Favoritado { get; set; }
         public AulaSessaoTipo AulaSessaoTipo { get; set; }
     }
@@ -24,13 +25,16 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
     public class SelecionarAulaSessaoFavoritadaByUsuarioIdQueryHandler : IRequestHandler<SelecionarAulaSessaoFavoritadaByUsuarioIdQuery, IEnumerable<SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse>>
     {
         private readonly IRepository<AulaSessaoFavoritada> _repository;
+        private readonly IRepository<ArquivoPdf> _repositoryArquivoPdf;
 
         public SelecionarAulaSessaoFavoritadaByUsuarioIdQueryHandler
         (
-            IRepository<AulaSessaoFavoritada> repository
+            IRepository<AulaSessaoFavoritada> repository,
+            IRepository<ArquivoPdf> repositoryArquivoPdf
         )
         {
             _repository = repository;
+            _repositoryArquivoPdf = repositoryArquivoPdf;
         }
 
         public async Task<IEnumerable<SelecionarAulaSessaoFavoritadaByUsuarioIdQueryResponse>> Handle
@@ -53,6 +57,11 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
                 response.DataAtualizacao = aulaFavoritada.DataAtualizacao;
                 response.Id = aulaFavoritada.Id;
 
+                if (aulaFavoritada.AulaSessao.AulaSessaoTipo.Equals(AulaSessaoTipo.Pdf)) {
+                    ArquivoPdf arquivoPdfMany = await GetArquivoPdfFirstAsync(aulaFavoritada.AulaSessao.Conteudo, cancellationToken);
+                    response.ArquivoConteudo = arquivoPdfMany.Conteudo;
+                }
+                
                 response.AulaId = aulaFavoritada.AulaSessao.AulaId;
                 response.AulaSessaoId = aulaFavoritada.AulaSessaoId;
                 response.Titulo = aulaFavoritada.AulaSessao.Titulo;
@@ -77,6 +86,19 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
                     item => item.UsuarioId.Equals(request.Id),
                     cancellationToken,
                     item => item.AulaSessao
+                );
+        }
+
+        private async Task<ArquivoPdf> GetArquivoPdfFirstAsync
+        (
+            string id,
+            CancellationToken cancellationToken
+        )
+        {
+            return await _repositoryArquivoPdf.GetFirstAsync
+                (
+                    item => item.Id.Equals(long.Parse(id)),
+                    cancellationToken
                 );
         }
     }
