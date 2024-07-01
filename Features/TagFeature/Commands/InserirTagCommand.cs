@@ -15,6 +15,8 @@ namespace ms_aula.Features.TagFeature.Commands
     {
         public long Id { get; set; }
         public DateTime DataCadastro { get; set; }
+
+        public string Nome { get; set; }
     }
 
     public class InserirTagHandler : IRequestHandler<InserirTagCommand, InserirTagCommandResponse>
@@ -48,6 +50,8 @@ namespace ms_aula.Features.TagFeature.Commands
             InserirTagCommandResponse response = new InserirTagCommandResponse();
             response.DataCadastro = forum.DataCadastro;
             response.Id = forum.Id;
+
+            response.Nome = forum.Nome;
 
             return response;
         }

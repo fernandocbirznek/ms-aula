@@ -5,17 +5,12 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.AreaFisicaFeature.Commands
 {
-    public class RemoverAreaFisicaCommand : IRequest<RemoverAreaFisicaCommandResponse>
+    public class RemoverAreaFisicaCommand : IRequest<long>
     {
         public long Id { get; set; }
     }
 
-    public class RemoverAreaFisicaCommandResponse
-    {
-        public long Id { get; set; }
-    }
-
-    public class RemoverAreaFisicaCommandHandler : IRequestHandler<RemoverAreaFisicaCommand, RemoverAreaFisicaCommandResponse>
+    public class RemoverAreaFisicaCommandHandler : IRequestHandler<RemoverAreaFisicaCommand, long>
     {
         private readonly IRepository<AreaFisica> _repository;
 
@@ -27,7 +22,7 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
             _repository = repository;
         }
 
-        public async Task<RemoverAreaFisicaCommandResponse> Handle
+        public async Task<long> Handle
         (
             RemoverAreaFisicaCommand request,
             CancellationToken cancellationToken
@@ -43,10 +38,7 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
             await _repository.RemoveAsync(forum);
             await _repository.SaveChangesAsync(cancellationToken);
 
-            RemoverAreaFisicaCommandResponse response = new RemoverAreaFisicaCommandResponse();
-            response.Id = forum.Id;
-
-            return response;
+            return forum.Id;
         }
 
         private async Task Validator

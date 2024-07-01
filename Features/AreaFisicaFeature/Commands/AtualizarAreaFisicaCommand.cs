@@ -15,7 +15,13 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
 
     public class AtualizarAreaFisicaCommandResponse
     {
+        public long Id { get; set; }
         public DateTime DataAtualizacao { get; set; }
+        public DateTime DataCadastro { get; set; }
+
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public string Aplicacao { get; set; }
     }
 
     public class AtualizarAreaFisicaHandler : IRequestHandler<AtualizarAreaFisicaCommand, AtualizarAreaFisicaCommandResponse>
@@ -50,7 +56,12 @@ namespace ms_aula.Features.AreaFisicaFeature.Commands
             await _repositoryAreaFisica.SaveChangesAsync(cancellationToken);
 
             AtualizarAreaFisicaCommandResponse response = new AtualizarAreaFisicaCommandResponse();
+            response.Id = areaFisica.Id;
             response.DataAtualizacao = areaFisica.DataAtualizacao;
+            response.DataCadastro = areaFisica.DataCadastro;
+            response.Aplicacao = areaFisica.Aplicacao;
+            response.Descricao = areaFisica.Descricao;
+            response.Titulo = areaFisica.Titulo;
 
             return response;
         }
