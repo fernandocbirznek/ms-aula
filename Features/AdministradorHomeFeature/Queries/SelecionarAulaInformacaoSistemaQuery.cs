@@ -77,7 +77,7 @@ namespace ms_aula.Features.AdministradorHomeFeature.Queries
         )
         {
             if (request is null)
-                throw new ArgumentNullException(MessageHelper.NullFor<SelecionarAreaFisicaDivisaoByAreaFisicaIdQuery>());
+                throw new ArgumentNullException(MessageHelper.NullFor<SelecionarAulaInformacaoSistemaQuery>());
 
             var response = new SelecionarAulaInformacaoSistemaQueryResponse();
             response.AreaFisicaCount = await _repository.CountAsync(cancellationToken);
