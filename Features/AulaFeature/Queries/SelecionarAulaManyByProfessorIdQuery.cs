@@ -24,18 +24,24 @@ namespace ms_aula.Features.AulaFeature.Queries
         public ICollection<AulaTag>? AulaTagMany { get; set; }
         public ICollection<AulaComentario>? AulaComentarioMany { get; set; }
         public ICollection<AulaSessao>? AulaSessaoMany { get; set; }
+
+        public string UsuarioNome { get; set; }
+        public byte[]? UsuarioFoto { get; set; }
     }
 
     public class SelecionarAulaManyByProfessorIdQueryHandler : IRequestHandler<SelecionarAulaManyByProfessorIdQuery, IEnumerable<SelecionarAulaManyByProfessorIdQueryResponse>>
     {
         private readonly IRepository<Aula> _repository;
+        private readonly IUsuarioService _usuarioService;
 
         public SelecionarAulaManyByProfessorIdQueryHandler
         (
-            IRepository<Aula> repository
+            IRepository<Aula> repository,
+            IUsuarioService usuarioService
         )
         {
             _repository = repository;
+            _usuarioService = usuarioService;
         }
 
         public async Task<IEnumerable<SelecionarAulaManyByProfessorIdQueryResponse>> Handle
@@ -53,6 +59,12 @@ namespace ms_aula.Features.AulaFeature.Queries
 
             foreach (Aula aula in aulaMany)
             {
+                var usuario = await _usuarioService.GetUsuarioByIdAsync(aula.ProfessorId);
+                if (usuario is null)
+                {
+                    usuario = new services.UsuarioService.UsuarioResponse();
+                }
+
                 SelecionarAulaManyByProfessorIdQueryResponse response = new SelecionarAulaManyByProfessorIdQueryResponse();
                 response.Titulo = aula.Titulo;
                 response.Resumo = aula.Resumo;
@@ -71,6 +83,10 @@ namespace ms_aula.Features.AulaFeature.Queries
                 response.DataCadastro = aula.DataCadastro;
                 response.DataAtualizacao = aula.DataAtualizacao;
                 response.Id = aula.Id;
+
+                response.UsuarioNome = usuario.Nome;
+                response.UsuarioFoto = usuario.Foto;
+
                 responseMany.Add(response);
             }
 

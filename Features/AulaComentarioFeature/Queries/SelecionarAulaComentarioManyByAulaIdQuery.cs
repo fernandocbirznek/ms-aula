@@ -15,18 +15,24 @@ namespace ms_aula.Features.AulaComentarioFeature.Queries
         public string Descricao { get; set; }
         public long AulaId { get; set; }
         public long UsuarioId { get; set; }
+
+        public string UsuarioNome { get; set; }
+        public byte[]? UsuarioFoto { get; set; }
     }
 
     public class SelecionarAulaComentarioManyByAulaIdQueryHandler : IRequestHandler<SelecionarAulaComentarioManyByAulaIdQuery, IEnumerable<SelecionarAulaComentarioManyByAulaIdQueryResponse>>
     {
         private readonly IRepository<AulaComentario> _repository;
+        private readonly IUsuarioService _usuarioService;
 
         public SelecionarAulaComentarioManyByAulaIdQueryHandler
         (
-            IRepository<AulaComentario> repository
+            IRepository<AulaComentario> repository,
+            IUsuarioService usuarioService
         )
         {
             _repository = repository;
+            _usuarioService = usuarioService;
         }
 
         public async Task<IEnumerable<SelecionarAulaComentarioManyByAulaIdQueryResponse>> Handle
@@ -44,6 +50,12 @@ namespace ms_aula.Features.AulaComentarioFeature.Queries
 
             foreach (AulaComentario aulaComentario in aulaComentarioMany)
             {
+                var usuario = await _usuarioService.GetUsuarioByIdAsync(aulaComentario.UsuarioId);
+                if (usuario is null)
+                {
+                    usuario = new services.UsuarioService.UsuarioResponse();
+                }
+
                 SelecionarAulaComentarioManyByAulaIdQueryResponse response = new SelecionarAulaComentarioManyByAulaIdQueryResponse();
                 response.Descricao = aulaComentario.Descricao;
                 response.AulaId = aulaComentario.AulaId;
@@ -51,6 +63,10 @@ namespace ms_aula.Features.AulaComentarioFeature.Queries
                 response.DataCadastro = aulaComentario.DataCadastro;
                 response.DataAtualizacao = aulaComentario.DataAtualizacao;
                 response.Id = aulaComentario.Id;
+
+                response.UsuarioNome = usuario.Nome;
+                response.UsuarioFoto = usuario.Foto;
+
                 responseMany.Add(response);
             }
 

@@ -24,18 +24,24 @@ namespace ms_aula.Features.AulaFeature.Queries
         public ICollection<AulaTag>? AulaTagMany { get; set; }
         public ICollection<AulaComentario>? AulaComentarioMany { get; set; }
         public ICollection<AulaSessao>? AulaSessaoMany { get; set; }
+
+        public string UsuarioNome { get; set; }
+        public byte[]? UsuarioFoto { get; set; }
     }
 
     public class SelecionarAulaByIdQueryHandler : IRequestHandler<SelecionarAulaByIdQuery, SelecionarAulaByIdQueryResponse>
     {
         private readonly IRepository<Aula> _repository;
+        private readonly IUsuarioService _usuarioService;
 
         public SelecionarAulaByIdQueryHandler
         (
-            IRepository<Aula> repository
+            IRepository<Aula> repository,
+            IUsuarioService usuarioService
         )
         {
             _repository = repository;
+            _usuarioService = usuarioService;
         }
 
         public async Task<SelecionarAulaByIdQueryResponse> Handle
@@ -50,6 +56,12 @@ namespace ms_aula.Features.AulaFeature.Queries
             Aula aula = await GetFirstAsync(request, cancellationToken);
 
             Validator(aula, cancellationToken);
+
+            var usuario = await _usuarioService.GetUsuarioByIdAsync(aula.ProfessorId);
+            if (usuario is null)
+            {
+                usuario = new services.UsuarioService.UsuarioResponse();
+            }
 
             SelecionarAulaByIdQueryResponse response = new SelecionarAulaByIdQueryResponse();
             response.Titulo = aula.Titulo;
@@ -69,6 +81,9 @@ namespace ms_aula.Features.AulaFeature.Queries
             response.DataCadastro = aula.DataCadastro;
             response.DataAtualizacao = aula.DataAtualizacao;
             response.Id = aula.Id;
+
+            response.UsuarioNome = usuario.Nome;
+            response.UsuarioFoto = usuario.Foto;
 
             return response;
         }
