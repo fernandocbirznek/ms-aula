@@ -70,19 +70,15 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 app.UseRouting();
 app.UseSwagger();
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-        c.RoutePrefix = "swagger";  // Isso vai permitir acessar o Swagger via http://localhost:8100/
-    });
-//}
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+    c.RoutePrefix = "swagger";  // Isso vai permitir acessar o Swagger via http://localhost:8100/
+});
 
 app.UseCors(MyAllowSpecificOrigins);
-//app.UseHttpsRedirection();
-//app.UseRouting();
+
 app.UseAuthorization();
 
 app.MapControllers();
