@@ -59,11 +59,11 @@ namespace ms_aula.Features.AulaFeature.Queries
 
             foreach (Aula aula in aulaMany)
             {
-                //var usuario = await _usuarioService.GetUsuarioByIdAsync(aula.ProfessorId);
-                //if (usuario is null)
-                //{
-                //    usuario = new services.UsuarioService.UsuarioResponse();
-                //}
+                var usuario = await _usuarioService.GetUsuarioByIdAsync(aula.ProfessorId);
+                if (usuario is null)
+                {
+                    usuario = new services.UsuarioService.UsuarioResponse();
+                }
 
                 SelecionarAulaManyByProfessorIdQueryResponse response = new SelecionarAulaManyByProfessorIdQueryResponse();
                 response.Titulo = aula.Titulo;
@@ -84,8 +84,8 @@ namespace ms_aula.Features.AulaFeature.Queries
                 response.DataAtualizacao = aula.DataAtualizacao;
                 response.Id = aula.Id;
 
-                //response.UsuarioNome = usuario.Nome;
-                //response.UsuarioFoto = usuario.Foto;
+                response.UsuarioNome = usuario.Nome;
+                response.UsuarioFoto = usuario.Foto;
 
                 responseMany.Add(response);
             }
