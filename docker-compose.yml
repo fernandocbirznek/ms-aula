@@ -9,7 +9,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - ConnectionStrings__DbContext=Host=postgres;Port=5432;Pooling=true;Database=site-fisica;User Id=postgres;Password=admin
+      - ConnectionStrings__DbContext=Host=ms-aula-postgres-1;Port=5432;Pooling=true;Database=site-fisica;User Id=postgres;Password=admin
     networks:
       - default
 
