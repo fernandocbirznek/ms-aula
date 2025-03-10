@@ -34,10 +34,14 @@ services:
   ms-aula:
     build: .
     container_name: ms-aula
+    depends_on:
+      - postgres
+    restart: always
     ports:
       - "5000:80"
     networks:
       - rede-compartilhada
+    entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
 
 networks:
   rede-compartilhada:
