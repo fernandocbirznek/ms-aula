@@ -37,6 +37,8 @@ services:
     restart: always
     ports:
       - "8100:5000"
+    depends_on:
+      - meu-postgres
     networks:
       - rede-compartilhada
     #entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
