@@ -1,48 +1,55 @@
 # version: '3.8'
 
 # services:
-#   app:
+#   ms-aula:
 #     build: .
+#     container_name: ms-aula
+#     restart: always
 #     ports:
-#       - "8100:5000" # Porta para acessar o aplicativo no host
-#       #- "8101:5001" # Porta HTTPS no host para o container
-#     depends_on:
-#       - postgres
-#     environment:
-#       - ConnectionStrings__DbContext=Host=ms-aula-postgres-1;Port=5432;Pooling=true;Database=site-fisica;User Id=postgres;Password=admin
+#       - "8100:5000"
 #     networks:
-#       - default
-
-#   postgres:
-#     image: postgres:latest
-#     environment:
-#       POSTGRES_USER: postgres
-#       POSTGRES_PASSWORD: admin
-#       POSTGRES_DB: site-fisica
-#     ports:
-#       - "5432:5432"
-#     networks:
-#       - default
+#       - rede-compartilhada
+#     #entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
 
 # networks:
-#   default:
-#     name: rede-compartilhada
+#   rede-compartilhada:
 #     external: true
+
 version: '3.8'
 
 services:
   ms-aula:
-    build: .
+    image: ms-aula:latest
     container_name: ms-aula
-    restart: always
     ports:
-      - "8100:5000"
-    depends_on:
-      - meu-postgres
+      - "5001:5000"
     networks:
       - rede-compartilhada
-    #entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
+    environment:
+      - DB_HOST=ms-aula-db
+      - DB_NAME=aula_db
+      - DB_USER=aula_user
+      - DB_PASS=aula_pass
+      - MS_USUARIO_URL=http://ms-usuario:5000
+    depends_on:
+      - ms-aula-db
+      - ms-usuario
+
+  ms-aula-db:
+    image: postgres:latest
+    container_name: ms-aula-db
+    environment:
+      POSTGRES_USER: aula_user
+      POSTGRES_PASSWORD: aula_pass
+      POSTGRES_DB: aula_db
+    volumes:
+      - ms-aula-db-data:/var/lib/postgresql/data
+    networks:
+      - rede-compartilhada
 
 networks:
   rede-compartilhada:
-    external: true
+    driver: bridge
+
+volumes:
+  ms-aula-db-data:
