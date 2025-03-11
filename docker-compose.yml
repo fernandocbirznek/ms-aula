@@ -19,10 +19,10 @@ version: '3.8'
 
 services:
   ms-aula:
-    image: ms-aula:latest
+    build: .
     container_name: ms-aula
     ports:
-      - "5001:5000"
+      - "5001:5001"
     networks:
       - rede-compartilhada
     environment:
@@ -30,7 +30,7 @@ services:
       - DB_NAME=aula_db
       - DB_USER=aula_user
       - DB_PASS=aula_pass
-      - MS_USUARIO_URL=http://ms-usuario:5000
+      - MS_USUARIO_URL=http://ms-usuario:5000  # Serviço ms-usuario está na mesma rede
     depends_on:
       - ms-aula-db
       - ms-usuario
@@ -49,7 +49,7 @@ services:
 
 networks:
   rede-compartilhada:
-    driver: bridge
+    external: true
 
 volumes:
   ms-aula-db-data:
