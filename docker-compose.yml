@@ -18,38 +18,31 @@
 version: '3.8'
 
 services:
-  ms-aula:
+  app:
     build: .
-    container_name: ms-aula
     ports:
-      - "5001:5001"
-    networks:
-      - rede-compartilhada
-    environment:
-      - DB_HOST=ms-aula-db
-      - DB_NAME=aula_db
-      - DB_USER=aula_user
-      - DB_PASS=aula_pass
-      - MS_USUARIO_URL=http://ms-usuario:5000  # Serviço ms-usuario está na mesma rede
+      - "8100:5000" # Porta para acessar o aplicativo no host
     depends_on:
-      - ms-aula-db
-      - ms-usuario
-
-  ms-aula-db:
-    image: postgres:latest
-    container_name: ms-aula-db
+      - postgres
     environment:
-      POSTGRES_USER: aula_user
-      POSTGRES_PASSWORD: aula_pass
-      POSTGRES_DB: aula_db
-    volumes:
-      - ms-aula-db-data:/var/lib/postgresql/data
+      - ConnectionStrings__DbContext=Host=postgres;Port=5432;Pooling=true;Database=site-fisica;User Id=postgres;Password=admin
     networks:
-      - rede-compartilhada
+      - app-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: site-fisica
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
 
 networks:
-  rede-compartilhada:
-    external: true
+  app-network:
+    driver: bridge
 
 volumes:
   ms-aula-db-data:
