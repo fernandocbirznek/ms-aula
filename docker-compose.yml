@@ -39,7 +39,7 @@ services:
       - "8100:5000"
     networks:
       - rede-compartilhada
-    entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
+    #entrypoint: ["/bin/sh", "-c", "until nc -z meu-postgres 5432; do echo Waiting for database; sleep 2; done; dotnet ms-aula.dll"]
 
 networks:
   rede-compartilhada:
