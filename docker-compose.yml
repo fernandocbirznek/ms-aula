@@ -40,9 +40,12 @@ services:
       - "5432:5432"
     networks:
       - app-network
+    volumes:
+      - ms-aula-db-data:/var/lib/postgresql/data
 
 networks:
   app-network:
+    name: app-network
     driver: bridge
 
 volumes:
