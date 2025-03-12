@@ -30,7 +30,7 @@ services:
       - app-network
 
   postgres:
-    container_name: ms-aula-postgres  # Nome fixo para permitir conexão externa  
+    container_name: ms-aula-postgres
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
