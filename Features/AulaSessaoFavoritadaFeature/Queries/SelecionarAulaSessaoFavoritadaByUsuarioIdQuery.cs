@@ -14,6 +14,8 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
     {
         public long AulaId { get; set; }
         public long AulaSessaoId { get; set; }
+        public long MuralPosicaoX { get; set; }
+        public long MuralPosicaoY { get; set; }
         public string Titulo { get; set; }
         public long Ordem { get; set; }
         public string Conteudo { get; set; }
@@ -69,6 +71,8 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature.Queries
                 response.Conteudo = aulaFavoritada.AulaSessao.Conteudo;
                 response.Favoritado = aulaFavoritada.AulaSessao.Favoritado;
                 response.AulaSessaoTipo = aulaFavoritada.AulaSessao.AulaSessaoTipo;
+                response.MuralPosicaoX = aulaFavoritada.MuralPosicaoX;
+                response.MuralPosicaoY = aulaFavoritada.MuralPosicaoY;
                 responseMany.Add(response);
             }
 

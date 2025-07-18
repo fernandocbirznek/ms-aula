@@ -5,7 +5,8 @@ using ms_aula.Interface;
 
 namespace ms_aula.Features.AreaFisicaFeature.Commands
 {
-    public class AtualizarAreaFisicaCommand : IRequest<AtualizarAreaFisicaCommandResponse>
+    public class AtualizarAreaFisicaCommand 
+        : IRequest<AtualizarAreaFisicaCommandResponse>
     {
         public long Id { get; set; }
         public string Titulo { get; set; }

@@ -26,6 +26,13 @@ namespace ms_aula.Features.AulaSessaoFavoritadaFeature
             return await this.SendAsync(_mediator, request);
         }
 
+        [HttpPut("atualizar")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> Put(AtualizarManyAulaSessaoFavoritadaCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
+
         [HttpDelete("excluir/{usuarioId}/{aulaSessaoId}")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Delete(long usuarioId, long aulaSessaoId)
